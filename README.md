@@ -1,5 +1,7 @@
 # Scala / Functional Programming Recap
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c97c5e8494f34ced833da38c13e1098b)](https://app.codacy.com/app/geektimus/scala-recap?utm_source=github.com&utm_medium=referral&utm_content=geektimus/scala-recap&utm_campaign=Badge_Grade_Settings)
+
 [![version](https://img.shields.io/badge/version-0.1.0--SNAPSHOT-brightgreen.svg)][semver]
 [![Build Status](https://travis-ci.org/geektimus/scala-recap.svg?branch=master)][travis_url]
 
