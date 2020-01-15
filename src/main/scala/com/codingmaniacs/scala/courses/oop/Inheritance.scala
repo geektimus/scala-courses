@@ -19,7 +19,10 @@ object Inheritance {
 
     def map[O](t: T => O): MyList[O]
     def filter(p: T => Boolean): MyList[T]
-    def flapMap[O](t: T =>  MyList[O]): MyList[O]
+    def flapMap[O](t: T => MyList[O]): MyList[O]
+
+    def foreach(f: T => Unit): Unit
+    def sort(s: (T, T) => Int): MyList[T]
 
     protected def prettyPrint: String
     override def toString: String = s"[$prettyPrint]"
@@ -43,6 +46,10 @@ object Inheritance {
     override def filter(p: Nothing => Boolean): MyList[Nothing] = this
 
     override def flapMap[O](t: Nothing => MyList[O]): MyList[O] = this
+
+    override def sort(s: (Nothing, Nothing) => Int): MyList[Nothing] = this
+
+    override def foreach(f: Nothing => Unit): Unit = ()
 
     override protected def prettyPrint: String = ""
 
@@ -108,6 +115,24 @@ object Inheritance {
         }
 
       toStringRec("", this)
+    }
+
+    override def foreach(f: T => Unit): Unit = {
+      f(h)
+      t.foreach(f)
+    }
+
+    override def sort(compare: (T, T) => Int): MyList[T] = {
+
+      def insert(value: T, sortedList: MyList[T]): MyList[T] =
+        sortedList match {
+          case l if l.isEmpty => new List(value, EmptyList)
+          case l if compare(value, l.h) <= 0 => new List(value, l)
+          case l => new List(l.h, insert(value, l.t))
+        }
+
+      val sortedTail = t.sort(compare)
+      insert(h, sortedTail)
     }
 
   }

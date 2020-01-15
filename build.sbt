@@ -39,6 +39,7 @@ lazy val library =
     val slf4j        = "org.apache.logging.log4j"   %  "log4j-slf4j-impl" % Version.slf4j
     val scalaCheck   = "org.scalacheck"             %% "scalacheck"       % Version.scalaCheck
     val specs2       = "org.specs2"                 %% "specs2-core"      % Version.specs2
+    val specs2Mock = "org.specs2" %% "specs2-mock" % Version.specs2
   }
 
 // *****************************************************************************
