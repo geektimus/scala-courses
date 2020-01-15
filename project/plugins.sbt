@@ -1,3 +1,5 @@
+logLevel := Level.Warn
+
 addSbtPlugin("com.typesafe.sbt"  % "sbt-git"               % "1.0.0")
 addSbtPlugin("de.heikoseeberger" % "sbt-header"            % "5.6.0")
 addSbtPlugin("com.typesafe.sbt"  % "sbt-native-packager"   % "1.7.6")
