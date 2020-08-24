@@ -42,6 +42,12 @@ lazy val library =
     val specs2Mock = "org.specs2" %% "specs2-mock" % Version.specs2
   }
 
+
+lazy val compilerPlugins =
+  new {
+    val kindProjector = "org.typelevel"     %% "kind-projector"  % "0.10.3" cross CrossVersion.binary
+  }
+
 // *****************************************************************************
 // Settings
 // *****************************************************************************
