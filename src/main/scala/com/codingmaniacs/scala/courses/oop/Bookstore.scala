@@ -38,4 +38,5 @@ object Bookstore {
     def isWrittenBy(otherAuthor: Writer): Boolean = otherAuthor == author
     def copy(newYearOfRelease: Int) = new Novel(name, newYearOfRelease, author)
   }
+
 }

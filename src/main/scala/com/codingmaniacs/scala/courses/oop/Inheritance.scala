@@ -146,6 +146,7 @@ object Inheritance {
 
       toStringRec("", this)
     }
+
   }
 
   object List {
@@ -156,11 +157,13 @@ object Inheritance {
       @tailrec
       def concatRec(res: MyList[T], rem: List[T]): MyList[T] =
         rem match {
-          case Nil => res
-          case List(a) => res.prepend(a)
+          case Nil          => res
+          case List(a)      => res.prepend(a)
           case head :: tail => concatRec(res.prepend(head), tail)
         }
       concatRec(EmptyList, xs)
     }
+
   }
+
 }
