@@ -28,11 +28,12 @@ object NumericExercises {
   val factorial: Int => Option[BigInt] = (n: Int) => {
 
     @tailrec
-    def factRec(acc: Int, number: Int): Option[BigInt] = number match {
-      case i if i < 1 => None
-      case 1 => Some(acc)
-      case i => factRec(acc * i, i - 1)
-    }
+    def factRec(acc: Int, number: Int): Option[BigInt] =
+      number match {
+        case i if i < 1 => None
+        case 1          => Some(acc)
+        case i          => factRec(acc * i, i - 1)
+      }
 
     factRec(1, n)
   }
