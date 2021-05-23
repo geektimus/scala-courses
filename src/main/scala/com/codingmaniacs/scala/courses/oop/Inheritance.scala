@@ -154,10 +154,11 @@ object Inheritance {
     def apply[T](xs: T*): MyList[T] = {
 
       @tailrec
-      def concatRec(res: MyList[T], rem: Seq[T]): MyList[T] =
+      def concatRec(res: MyList[T], rem: List[T]): MyList[T] =
         rem match {
-          case Seq() => res
-          case Seq(head, tail @ _*) => concatRec(res.prepend(head), tail)
+          case Nil => res
+          case List(a) => res.prepend(a)
+          case head :: tail => concatRec(res.prepend(head), tail)
         }
       concatRec(EmptyList, xs)
     }
