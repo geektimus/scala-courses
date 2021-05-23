@@ -4,7 +4,6 @@ lazy val `scala-courses` =
     .enablePlugins(AutomateHeaderPlugin, GitVersioning, JavaAppPackaging, AshScriptPlugin)
     .settings(name := "Scala Courses")
     .settings(settings)
-    .settings(dockerSettings)
     .settings(
       libraryDependencies ++= Seq(
           library.log4j2Api,
@@ -14,8 +13,7 @@ lazy val `scala-courses` =
           library.slf4j,
           library.scalaCheck % Test,
           library.specs2 % Test
-        ),
-      version in Docker := "0.1.0-SNAPSHOT"
+        )
     )
 
 // *****************************************************************************
@@ -26,22 +24,21 @@ lazy val library =
   new {
 
     object Version {
-      val log4j2 = "2.11.0"
-      val log4j2Scala = "11.0"
-      val scalaLogging = "3.9.2"
-      val slf4j = "2.12.0"
-      val scalaCheck = "1.14.0"
-      val specs2 = "4.4.1"
+      val log4j2       = "2.14.1"
+      val log4j2Scala  = "12.0"
+      val scalaLogging = "3.9.3"
+      val slf4j        = "2.14.1"
+      val scalaCheck   = "1.15.4"
+      val specs2       = "4.12.0"
     }
 
-    val log4j2Api = "org.apache.logging.log4j" % "log4j-api" % Version.log4j2
-    val log4j2Core = "org.apache.logging.log4j" % "log4j-core" % Version.log4j2 % Runtime
-    val log4j2Scala = "org.apache.logging.log4j" % "log4j-api-scala_2.12" % Version.log4j2Scala
-    val scalaLogging = "com.typesafe.scala-logging" %% "scala-logging" % Version.scalaLogging
-    val slf4j = "org.apache.logging.log4j" % "log4j-slf4j-impl" % Version.slf4j
-
-    val scalaCheck = "org.scalacheck" %% "scalacheck" % Version.scalaCheck
-    val specs2 = "org.specs2" %% "specs2-core" % Version.specs2
+    val log4j2Api    = "org.apache.logging.log4j"   %  "log4j-api"        % Version.log4j2
+    val log4j2Core   = "org.apache.logging.log4j"   %  "log4j-core"       % Version.log4j2 % Runtime
+    val log4j2Scala  = "org.apache.logging.log4j"   %% "log4j-api-scala"  % Version.log4j2Scala
+    val scalaLogging = "com.typesafe.scala-logging" %% "scala-logging"    % Version.scalaLogging
+    val slf4j        = "org.apache.logging.log4j"   %  "log4j-slf4j-impl" % Version.slf4j
+    val scalaCheck   = "org.scalacheck"             %% "scalacheck"       % Version.scalaCheck
+    val specs2       = "org.specs2"                 %% "specs2-core"      % Version.specs2
   }
 
 // *****************************************************************************
@@ -73,24 +70,13 @@ lazy val commonSettings =
         "-unchecked",
         "-Xfatal-warnings",
         "-Xlint",
-        "-Yno-adapted-args",
-        "-Ypartial-unification",
         "-Ywarn-dead-code",
-        "-Ywarn-infer-any",
         "-Ywarn-numeric-widen",
         "-Ywarn-unused",
-        "-Ywarn-unused-import",
+        "-Ywarn-unused:imports",
         "-Ywarn-value-discard"
       ),
-    parallelExecution.in(Test) := false,
-    unmanagedSourceDirectories.in(Compile) := Seq(scalaSource.in(Compile).value),
-    unmanagedSourceDirectories.in(Test) := Seq(scalaSource.in(Test).value)
-  )
-
-lazy val dockerSettings =
-  Seq(
-    dockerBaseImage := "openjdk:8-jdk-alpine",
-    dockerUpdateLatest := true
+    Test / parallelExecution := false
   )
 
 lazy val gitSettings =
