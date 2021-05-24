@@ -11,8 +11,8 @@ object Bookstore {
     def fullname: Option[String] =
       (firstName, surname) match {
         case (f: String, s: String) if !isEmpty(f) && !isEmpty(s) => Some(s"$f $s")
-        case (f, _) if !isEmpty(f) => Some(f)
-        case _ => None
+        case (f, _) if !isEmpty(f)                                => Some(f)
+        case _                                                    => None
       }
 
     private[this] val isEmpty = (x: String) => Option(x).forall(_.isEmpty)
