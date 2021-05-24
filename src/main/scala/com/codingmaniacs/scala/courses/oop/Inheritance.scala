@@ -38,7 +38,7 @@ object Inheritance {
 
     override def isEmpty: Boolean = true
 
-    override def prepend[O >: Nothing](n: O): MyList[O] = new List(n, EmptyList)
+    override def prepend[O >: Nothing](n: O): MyList[O] = new CustomList(n, EmptyList)
 
     override def reverse: MyList[Nothing] = this
 
@@ -65,14 +65,14 @@ object Inheritance {
     override protected def prettyPrint: String = ""
   }
 
-  case class List[+T](x: T, xs: MyList[T]) extends MyList[T] {
+  case class CustomList[+T](x: T, xs: MyList[T]) extends MyList[T] {
     override def h: T = x
 
     override def t: MyList[T] = xs
 
     override def isEmpty: Boolean = false
 
-    override def prepend[O >: T](n: O): MyList[O] = new List(n, this)
+    override def prepend[O >: T](n: O): MyList[O] = new CustomList(n, this)
 
     override def reverse: MyList[T] = {
 
@@ -80,13 +80,12 @@ object Inheritance {
       def reverseRec(res: MyList[T], rem: MyList[T]): MyList[T] =
         rem match {
           case l if l.isEmpty => res
-          case l => reverseRec(res.prepend(l.h), l.t)
+          case l              => reverseRec(res.prepend(l.h), l.t)
         }
       reverseRec(EmptyList, this)
     }
 
-    override def ++[O >: T](ol: MyList[O]): MyList[O] =
-      new List[O](h, t ++ ol)
+    override def ++[O >: T](ol: MyList[O]): MyList[O] = new CustomList[O](h, t ++ ol)
 
     override def map[O](tr: T => O): MyList[O] = {
 
@@ -94,7 +93,7 @@ object Inheritance {
       def mapRec(res: MyList[O], rem: MyList[T]): MyList[O] =
         rem match {
           case l if l.isEmpty => res
-          case l => mapRec(res.prepend(tr(l.h)), l.t)
+          case l              => mapRec(res.prepend(tr(l.h)), l.t)
         }
       mapRec(EmptyList, this)
     }
@@ -105,23 +104,22 @@ object Inheritance {
       def filterRec(res: MyList[T], rem: MyList[T]): MyList[T] =
         rem match {
           case l if l.isEmpty => res
-          case l if p(l.h) => filterRec(res.prepend(l.h), l.t)
-          case l => filterRec(res, l.t)
+          case l if p(l.h)    => filterRec(res.prepend(l.h), l.t)
+          case l              => filterRec(res, l.t)
         }
       filterRec(EmptyList, this)
     }
 
-    override def flapMap[O](tr: T => MyList[O]): MyList[O] =
-      tr(h) ++ t.flapMap(tr)
+    override def flapMap[O](tr: T => MyList[O]): MyList[O] = tr(h) ++ t.flapMap(tr)
 
     override def prettyPrint: String = {
 
       @tailrec
       def toStringRec(acc: String, list: MyList[T]): String =
         list match {
-          case l if l.isEmpty => acc
+          case EmptyList        => acc
           case l if acc.isEmpty => toStringRec(s"${l.h}", l.t)
-          case l: List[T] => toStringRec(s"$acc, ${l.h}", l.t)
+          case l: CustomList[T] => toStringRec(s"$acc, ${l.h}", l.t)
         }
 
       toStringRec("", this)
@@ -136,9 +134,9 @@ object Inheritance {
 
       def insert(value: T, sortedList: MyList[T]): MyList[T] =
         sortedList match {
-          case l if l.isEmpty => new List(value, EmptyList)
-          case l if compare(value, l.h) <= 0 => new List(value, l)
-          case l => new List(l.h, insert(value, l.t))
+          case l if l.isEmpty                => new CustomList(value, EmptyList)
+          case l if compare(value, l.h) <= 0 => new CustomList(value, l)
+          case l                             => new CustomList(l.h, insert(value, l.t))
         }
 
       val sortedTail = t.sort(compare)
@@ -148,12 +146,11 @@ object Inheritance {
     override def zipWith[O, C](o: MyList[O], f: (T, O) => C): MyList[C] = {
 
       @tailrec
-      def zipRec(res: MyList[C], fList: MyList[T], sList: MyList[O]): MyList[C] = {
+      def zipRec(res: MyList[C], fList: MyList[T], sList: MyList[O]): MyList[C] =
         (fList, sList) match {
           case (fl, sl) if fl.isEmpty || sl.isEmpty => res
-          case (fl, sl) => zipRec(res.prepend(f(fl.h, sl.h)), fl.t, sl.t)
+          case (fl, sl)                             => zipRec(res.prepend(f(fl.h, sl.h)), fl.t, sl.t)
         }
-      }
 
       if (this.isEmpty)
         throw new RuntimeException("The list don't have the same size")
@@ -165,8 +162,8 @@ object Inheritance {
 
   }
 
-  object List {
-    def apply[T](x: T, xs: MyList[T]): MyList[T] = new List(x, xs)
+  object CustomList {
+    def apply[T](x: T, xs: MyList[T]): MyList[T] = new CustomList(x, xs)
 
     def apply[T](xs: T*): MyList[T] = {
 
@@ -177,7 +174,7 @@ object Inheritance {
           case List(a)      => res.prepend(a)
           case head :: tail => concatRec(res.prepend(head), tail)
         }
-      concatRec(EmptyList, xs)
+      concatRec(EmptyList, xs.toList)
     }
 
   }
