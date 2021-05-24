@@ -12,7 +12,10 @@ lazy val `scala-courses` =
           library.scalaLogging,
           library.slf4j,
           library.scalaCheck % Test,
-          library.specs2 % Test
+          library.specs2 % Test,
+          library.specs2Mock % Test,
+          library.scalaTest % Test,
+        library.scalaTestPlus % Test
         )
     )
 
@@ -30,6 +33,7 @@ lazy val library =
       val slf4j        = "2.14.1"
       val scalaCheck   = "1.15.4"
       val specs2       = "4.12.0"
+      val scalaTest    = "3.2.9"
     }
 
     val log4j2Api    = "org.apache.logging.log4j"   %  "log4j-api"        % Version.log4j2
@@ -39,7 +43,10 @@ lazy val library =
     val slf4j        = "org.apache.logging.log4j"   %  "log4j-slf4j-impl" % Version.slf4j
     val scalaCheck   = "org.scalacheck"             %% "scalacheck"       % Version.scalaCheck
     val specs2       = "org.specs2"                 %% "specs2-core"      % Version.specs2
-    val specs2Mock = "org.specs2" %% "specs2-mock" % Version.specs2
+    val specs2Mock   = "org.specs2"                 %% "specs2-mock"      % Version.specs2
+    val scalaTest    = "org.scalatest"              %% "scalatest"        % Version.scalaTest
+    val scalaTestPlus = "org.scalatestplus"         %% "scalacheck-1-14"  % "3.2.1.0"
+
   }
 
 
