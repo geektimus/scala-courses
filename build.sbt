@@ -56,7 +56,7 @@ lazy val commonSettings =
     // scalaVersion := "2.12.9",
     version := "0.1.0-SNAPSHOT",
     organization := "com.codingmaniacs.scala.courses",
-    headerLicense := Some(HeaderLicense.MIT("2019", "Geektimus")),
+    headerLicense := Some(HeaderLicense.Custom("Copyright (c) Geektimus <https://github.com/geektimus>")),
     scalacOptions ++= Seq(
         "-deprecation",
         "-encoding",
