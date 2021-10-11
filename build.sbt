@@ -29,10 +29,10 @@ lazy val library =
     object Version {
       val log4j2       = "2.14.1"
       val log4j2Scala  = "12.0"
-      val scalaLogging = "3.9.3"
+      val scalaLogging = "3.9.4"
       val slf4j        = "2.14.1"
       val scalaCheck   = "1.15.4"
-      val specs2       = "4.12.0"
+      val specs2       = "4.12.3"
       val scalaTest    = "3.2.9"
     }
 
@@ -45,7 +45,7 @@ lazy val library =
     val specs2       = "org.specs2"                 %% "specs2-core"      % Version.specs2
     val specs2Mock   = "org.specs2"                 %% "specs2-mock"      % Version.specs2
     val scalaTest    = "org.scalatest"              %% "scalatest"        % Version.scalaTest
-    val scalaTestPlus = "org.scalatestplus"         %% "scalacheck-1-14"  % "3.2.1.0"
+    val scalaTestPlus = "org.scalatestplus"         %% "scalacheck-1-15"  % "3.2.9.0"
 
   }
 
