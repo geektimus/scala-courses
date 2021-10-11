@@ -3,8 +3,7 @@ language: scala
 scala:
   - 2.13.6
 
-jdk:
-  - openjdk8
+jdk: openjdk16
 
 branches:
   # safe list
