@@ -25,7 +25,6 @@ lazy val `file-system-exercise` =
     .enablePlugins(AutomateHeaderPlugin, GitVersioning, JavaAppPackaging, AshScriptPlugin)
     .settings(name := "Virtual Filesystem (Exercise)")
     .settings(settings)
-    .settings(dockerSettings)
     .settings(
       libraryDependencies ++= Seq(
         library.log4j2Api,
@@ -36,7 +35,7 @@ lazy val `file-system-exercise` =
         library.scalaCheck % Test,
         library.specs2 % Test
       ),
-      version in Docker := "0.1.0-SNAPSHOT"
+      Docker / version := "0.1.0-SNAPSHOT"
     )
 
 // *****************************************************************************

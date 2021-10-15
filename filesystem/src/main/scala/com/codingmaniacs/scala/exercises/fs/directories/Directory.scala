@@ -1,22 +1,5 @@
 /*
- * Copyright (c) 2019 Geektimus
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * Copyright (c) Geektimus <https://github.com/geektimus>
  */
 
 package com.codingmaniacs.scala.exercises.fs.directories
@@ -33,8 +16,7 @@ class Directory(
 
   def hasEntry(name: String): Boolean = findEntry(name) != null
 
-  def getAllFoldersInPath: List[String] =
-    path.substring(1).split(Directory.SEPARATOR).toList.filter(p => !p.isEmpty)
+  def getAllFoldersInPath: List[String] = path.substring(1).split(Directory.SEPARATOR).toList.filter(p => !p.isEmpty)
 
   def findDescendant(paths: List[String]): Directory =
     if (paths.isEmpty) this
@@ -44,8 +26,7 @@ class Directory(
     if (relativePath.isEmpty) this
     else findDescendant(relativePath.split(Directory.SEPARATOR).toList)
 
-  def addEntry(newEntry: DirEntry): Directory =
-    new Directory(parentPath, name, contents :+ newEntry)
+  def addEntry(newEntry: DirEntry): Directory = new Directory(parentPath, name, contents :+ newEntry)
 
   def findEntry(entryName: String): DirEntry = {
 
@@ -72,8 +53,7 @@ class Directory(
 
   override def getType: String = "Directory"
 
-  override def asFile: File =
-    throw new FileSystemException("A folder cannot be converted to a file!")
+  override def asFile: File = throw new FileSystemException("A folder cannot be converted to a file!")
 
   override def isDirectory: Boolean = true
   override def isFile: Boolean = !isDirectory
@@ -83,8 +63,7 @@ object Directory {
   val SEPARATOR = "/"
   val ROOT_PATH = "/"
 
-  def empty(parentPath: String, name: String): Directory =
-    new Directory(parentPath, name, List())
+  def empty(parentPath: String, name: String): Directory = new Directory(parentPath, name, List())
 
   def ROOT: Directory = Directory.empty("", "")
 }
