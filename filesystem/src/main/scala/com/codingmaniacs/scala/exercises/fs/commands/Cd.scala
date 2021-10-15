@@ -57,13 +57,12 @@ class Cd(dir: String) extends Command {
     def collapseTokensRec(tokens: List[String], res: List[String]): List[String] =
       tokens match {
         case List()                     => res
-        case List(a) => res :+ a
         case h :: tail if h.equals(".") => collapseTokensRec(tail, res)
         case h :: tail if h.equals("..") =>
           res match {
-            case List()    => null
+            case List()    => List()
             case init :+ _ => collapseTokensRec(tail, init)
-            case lst @ List(_)    => lst
+            case _ => List()
           }
         case h :: tail => collapseTokensRec(tail, res :+ h)
       }
