@@ -4,9 +4,10 @@
 
 package com.codingmaniacs.scala.courses.basic
 
-import org.specs2.mutable.Specification
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class StringExercisesSpec extends Specification {
+class StringExercisesSpec extends AnyWordSpec with Matchers {
   "The greeting function" should {
     "return a greeting when the name and age are provided" in {
       val greet = StringExercises.greet("User", 20)
@@ -14,7 +15,7 @@ class StringExercisesSpec extends Specification {
     }
     "fail to greet when the name is not provided" in {
       val greet = StringExercises.greet("", 20)
-      greet must beNone
+      greet mustBe None
     }
   }
 

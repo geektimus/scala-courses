@@ -1,6 +1,6 @@
-# Scala / Functional Programming Recap
+# Scala / Functional Programming Courses/ Recap
 
-[![version](https://img.shields.io/badge/version-0.1.0--SNAPSHOT-brightgreen.svg)][semver]
+[![version](https://img.shields.io/badge/version-0.2.0--SNAPSHOT-brightgreen.svg)][semver]
 [![Build Status](https://app.travis-ci.com/geektimus/scala-courses.svg?branch=master)][travis_url]
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/827e74bcacba4742b077d06781620000)](https://www.codacy.com/app/geektimus/scala-courses?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=geektimus/scala-courses&amp;utm_campaign=Badge_Grade)
 
@@ -8,7 +8,7 @@ Small project to recap Scala concepts and practice functional programming  with 
 
 ## Built With
 
-*   [Scala 2.13.6][scala]   - Base language
+*   [Scala 3.1.0][scala]   - Base language
 
 ## Contributing
 

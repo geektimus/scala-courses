@@ -5,21 +5,22 @@
 package com.codingmaniacs.scala.courses.oop
 
 import com.codingmaniacs.scala.courses.oop.Bookstore.{ Novel, Writer }
-import org.specs2.mutable.Specification
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class BookstoreSpec extends Specification {
+class BookstoreSpec extends AnyWordSpec with Matchers {
   "The bookstore" should {
     "allow the creation of a writer" in {
       val writer = new Writer("Edgar", "Poe", 1809)
-      writer.fullname must beSome("Edgar Poe")
+      writer.fullname mustBe Some("Edgar Poe")
     }
     "allow the creation of a writer (with only first name)" in {
       val writer = new Writer("Edgar", yearOfBirth = 1809)
-      writer.fullname must beSome("Edgar")
+      writer.fullname mustBe Some("Edgar")
     }
     "avoid the creation of a writer without name" in {
       val writer = new Writer("", yearOfBirth = 1809)
-      writer.fullname must beNone
+      writer.fullname mustBe None
     }
     "allow the creation of a novel" in {
       val novelName = "The Raven"
@@ -41,8 +42,8 @@ class BookstoreSpec extends Specification {
       val novel = new Novel("The Raven", 1845, allanPoe)
 
       val revision = novel.copy(1860)
-      novel mustNotEqual revision
-      novel.yearOfRelease mustNotEqual revision.yearOfRelease
+      novel must not equal revision
+      novel.yearOfRelease must not equal revision.yearOfRelease
       revision.authorAge mustEqual 51
     }
     "allow the user check if a book was written by a given author" in {
@@ -51,7 +52,7 @@ class BookstoreSpec extends Specification {
       val novel = new Novel("The Raven", 1845, allanPoe)
 
       val checkAuthor = novel.isWrittenBy(impostor)
-      checkAuthor must beFalse
+      checkAuthor mustBe false
     }
   }
 }

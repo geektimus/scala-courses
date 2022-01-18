@@ -5,9 +5,10 @@
 package com.codingmaniacs.scala.courses.oop
 
 import com.codingmaniacs.scala.courses.oop.Counters.Counter
-import org.specs2.mutable.Specification
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class CountersSpec extends Specification {
+class CountersSpec extends AnyWordSpec with Matchers {
   "The counter class" should {
     "allow the creation of a counter" in {
       val counter = new Counter
