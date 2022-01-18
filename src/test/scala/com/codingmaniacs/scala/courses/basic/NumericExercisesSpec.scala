@@ -4,13 +4,15 @@
 
 package com.codingmaniacs.scala.courses.basic
 
-import org.specs2.mutable.Specification
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class NumericExercisesSpec extends Specification {
+import scala.Console.in
+
+class NumericExercisesSpec extends AnyWordSpec with Matchers {
   "The calculator" should {
     "return the factorial of a given positive integer (1)" in {
       val factorial = NumericExercises.factorial(1)
-      factorial must beSome
       factorial.getOrElse(0) mustEqual 1
     }
     "return the factorial of a given positive integer (5)" in {
@@ -19,7 +21,7 @@ class NumericExercisesSpec extends Specification {
     }
     "fail when provided with a non valid value (n < 1)" in {
       val factorial = NumericExercises.factorial(0)
-      factorial must beNone
+      factorial mustBe None
     }
     "return the Fibonacci of a given positive integer (1)" in {
       val fibonacci = NumericExercises.fibonacci(1)

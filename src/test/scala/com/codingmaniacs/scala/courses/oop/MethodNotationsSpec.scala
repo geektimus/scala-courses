@@ -5,9 +5,10 @@
 package com.codingmaniacs.scala.courses.oop
 
 import com.codingmaniacs.scala.courses.oop.MethodNotations.Person
-import org.specs2.mutable.Specification
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class MethodNotationsSpec extends Specification {
+class MethodNotationsSpec extends AnyWordSpec with Matchers {
 
   val person: Person = new Person("John Doe", 30, "John Wick")
 
@@ -15,7 +16,7 @@ class MethodNotationsSpec extends Specification {
     "allow the user to check if a given person likes a movie or not" in {
       val otherMovie = "Saw 3D"
       val isFavoriteMovie = person likes otherMovie
-      isFavoriteMovie must beFalse
+      isFavoriteMovie mustBe false
     }
     "describe the fact that two persons are hanging out" in {
       val otherPerson = new Person("Jane Doe", 25, "Rambo III")
@@ -32,12 +33,12 @@ class MethodNotationsSpec extends Specification {
     }
     "allow the user to create a person with a nickname" in {
       val personWithNickname = person + "The unknown"
-      person mustNotEqual personWithNickname
+      person must not equal personWithNickname
       personWithNickname.name mustEqual "John Doe (The unknown)"
     }
     "allow the user to create a person with an incremented age" in {
       val personWithNickname = +person
-      person mustNotEqual personWithNickname
+      person must not equal personWithNickname
       personWithNickname.age mustEqual 31
     }
     "allow the user to check what a person wants to learn" in {

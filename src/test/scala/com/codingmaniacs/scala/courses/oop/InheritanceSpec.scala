@@ -5,52 +5,53 @@
 package com.codingmaniacs.scala.courses.oop
 
 import com.codingmaniacs.scala.courses.oop.Inheritance.{ CustomList, EmptyList }
-import org.specs2.matcher.AnyMatchers
-import org.specs2.mutable.Specification
-import org.specs2.mock.Mockito
+import org.mockito.Mockito.{ times, verify }
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatestplus.mockito.MockitoSugar.mock
 
-class InheritanceSpec extends Specification with AnyMatchers with Mockito {
+class InheritanceSpec extends AnyWordSpec with Matchers {
   "The custom list" should {
     "allow the creation of an EmptyList" in {
       val emptyList = EmptyList
-      emptyList.isEmpty must beTrue
+      emptyList.isEmpty mustBe true
     }
     "allow the user to add elements to an EmptyList" in {
       val list = EmptyList.prepend(2)
-      list.isEmpty must beFalse
+      list.isEmpty mustBe false
       list.h mustEqual 2
-      list.t.isEmpty must beTrue
+      list.t.isEmpty mustBe true
     }
     "allow the user to create a non empty list" in {
       val list = new CustomList(1, new CustomList(2, EmptyList))
-      list.isEmpty must beFalse
+      list.isEmpty mustBe false
       list.h mustEqual 1
       val tail = list.t
       tail.h mustEqual 2
-      tail.t.isEmpty must beTrue
+      tail.t.isEmpty mustBe true
     }
     "allow the user to reverse an empty list (duh!)" in {
       val emptyList = EmptyList
-      emptyList.isEmpty must beTrue
-      emptyList.reverse.isEmpty must beTrue
+      emptyList.isEmpty mustBe true
+      emptyList.reverse.isEmpty mustBe true
     }
     "allow the user to reverse a custom list" in {
       val list = new CustomList(1, new CustomList(2, EmptyList))
-      list.isEmpty must beFalse
+      list.isEmpty mustBe false
       val reversedList = list.reverse
       reversedList.h mustEqual 2
       val tail = reversedList.t
       tail.h mustEqual 1
-      tail.t.isEmpty must beTrue
+      tail.t.isEmpty mustBe true
     }
     "allow the user to print the elements of a custom list" in {
       val list = new CustomList(1, new CustomList(2, EmptyList))
-      list.isEmpty must beFalse
+      list.isEmpty mustBe false
       list.toString mustEqual "[1, 2]"
     }
     "allow create a list in a easy way" in {
       val list = CustomList(1, 2, 3, 4, 5, 6)
-      list.isEmpty must beFalse
+      list.isEmpty mustBe false
       list.toString mustEqual "[6, 5, 4, 3, 2, 1]"
     }
 
@@ -59,7 +60,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val mappedList = list.map(_ * 2)
 
-      mappedList.isEmpty must beFalse
+      mappedList.isEmpty mustBe false
       mappedList.h mustEqual 2
       mappedList.t.h mustEqual 4
       mappedList.t.t.h mustEqual 6
@@ -70,9 +71,9 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val mappedList = list.filter(_ % 2 == 0)
 
-      mappedList.isEmpty must beFalse
+      mappedList.isEmpty mustBe false
       mappedList.h mustEqual 2
-      mappedList.t.isEmpty must beTrue
+      mappedList.t.isEmpty mustBe true
     }
 
     "allow the user to concatenate a empty list with a list" in {
@@ -81,7 +82,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val result = emptyList ++ list
 
-      result.isEmpty must beFalse
+      result.isEmpty mustBe false
       result.h mustEqual 3
       result.t.h mustEqual 2
     }
@@ -92,7 +93,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val result = otherList ++ list
 
-      result.isEmpty must beFalse
+      result.isEmpty mustBe false
       result.h mustEqual 4
       result.t.h mustEqual 3
       result.t.t.h mustEqual 2
@@ -103,7 +104,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val result = list.flapMap(el => new CustomList(el, new CustomList(el * el, EmptyList)))
 
-      result.isEmpty must beFalse
+      result.isEmpty mustBe false
       result.h mustEqual 3
       result.t.h mustEqual 9
       result.toString mustEqual "[3, 9, 2, 4, 1, 1]"
@@ -114,7 +115,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val result = list.sort((x, y) => y - x)
 
-      result.isEmpty must beFalse
+      result.isEmpty mustBe false
       result.h mustEqual 7
       result.t.h mustEqual 5
       result.toString mustEqual "[7, 5, 3, 1]"
@@ -125,7 +126,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val result = list.sort((x, y) => x - y)
 
-      result.isEmpty must beFalse
+      result.isEmpty mustBe false
       result.h mustEqual 1
       result.t.h mustEqual 3
       result.toString mustEqual "[1, 3, 5, 7]"
@@ -138,7 +139,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       list.foreach(m(_))
 
-      there was 4.times(m)
+      verify(m, times(3))
     }
 
     "allow the user to zip two lists with an operation" in {
@@ -147,7 +148,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val result = list1.zipWith[Int, Int](list2, (x, y) => x * y)
 
-      result.isEmpty must beFalse
+      result.isEmpty mustBe false
       result.toString mustEqual "[3, 15, 5, 49]"
     }
 
@@ -157,7 +158,7 @@ class InheritanceSpec extends Specification with AnyMatchers with Mockito {
 
       val result = list1.zipWith[String, String](list2, (x, y) => s"$x is $y")
 
-      result.isEmpty must beFalse
+      result.isEmpty mustBe false
       result.toString mustEqual "[1 is odd, 2 is even, 3 is odd, 4 is even]"
     }
 

@@ -10,9 +10,10 @@ import com.codingmaniacs.scala.courses.exceptions.Exceptions.{
   PocketCalculator,
   UnderflowException
 }
-import org.specs2.mutable.Specification
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class ExceptionsSpec extends Specification {
+class ExceptionsSpec extends AnyWordSpec with Matchers {
   "The pocket calculator" should {
     "add two positive numbers" in {
       val result = PocketCalculator.add(1, 2)
@@ -23,10 +24,10 @@ class ExceptionsSpec extends Specification {
       result mustEqual -15
     }
     "throw an OverflowException if a + b > Int.MaxValue" in {
-      PocketCalculator.add(Int.MaxValue, 10) must throwAn[OverflowException]
+      an[OverflowException] should be thrownBy PocketCalculator.add(Int.MaxValue, 10)
     }
     "throw an UnderflowException if a + b < Int.MinValue" in {
-      PocketCalculator.add(-10, Int.MinValue) must throwAn[UnderflowException]
+      an[UnderflowException] should be thrownBy PocketCalculator.add(-10, Int.MinValue)
     }
     "subtract two positive numbers" in {
       val result = PocketCalculator.subtract(1, 2)
@@ -37,10 +38,10 @@ class ExceptionsSpec extends Specification {
       result mustEqual 10
     }
     "throw an UnderflowException if a - b < Int.MinValue" in {
-      PocketCalculator.subtract(-20, Int.MaxValue) must throwAn[UnderflowException]
+      an[UnderflowException] should be thrownBy PocketCalculator.subtract(-20, Int.MaxValue)
     }
     "throw an OverflowException if a - b > Int.MaxValue" in {
-      PocketCalculator.subtract(20, Int.MinValue) must throwAn[OverflowException]
+      an[OverflowException] should be thrownBy PocketCalculator.subtract(20, Int.MinValue)
     }
     "multiply two positive numbers" in {
       val result = PocketCalculator.multiply(5, 8)
@@ -51,17 +52,17 @@ class ExceptionsSpec extends Specification {
       result mustEqual 40
     }
     "throw an UnderflowException if a * b < Int.MinValue" in {
-      PocketCalculator.subtract(-20, Int.MaxValue) must throwAn[UnderflowException]
+      an[UnderflowException] should be thrownBy PocketCalculator.subtract(-20, Int.MaxValue)
     }
     "throw an OverflowException if a * b > Int.MaxValue" in {
-      PocketCalculator.subtract(20, Int.MinValue) must throwAn[OverflowException]
+      an[OverflowException] should be thrownBy PocketCalculator.subtract(20, Int.MinValue)
     }
     "divide two numbers" in {
       val result = PocketCalculator.divide(200, 10)
       result mustEqual 20
     }
     "throw an MathCalculationException if b = 0 in a / b" in {
-      PocketCalculator.divide(25, 0) must throwAn[MathCalculationException]
+      an[MathCalculationException] should be thrownBy PocketCalculator.divide(25, 0)
     }
   }
 }
