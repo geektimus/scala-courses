@@ -1,7 +1,7 @@
 lazy val `scala-courses` =
   project
     .in(file("."))
-    .enablePlugins(AutomateHeaderPlugin, GitVersioning, JavaAppPackaging, AshScriptPlugin)
+    .enablePlugins(AutomateHeaderPlugin)
     .settings(name := "Scala Courses")
     .settings(settings)
     .settings(
@@ -52,15 +52,11 @@ lazy val library =
 // Settings
 // *****************************************************************************
 
-lazy val settings =
-  commonSettings ++
-  gitSettings ++
-  scalafmtSettings
+lazy val settings = commonSettings ++ scalafmtSettings
 
 lazy val commonSettings =
   Seq(
-    // scalaVersion from .travis.yml via sbt-travisci
-    // scalaVersion := "3.1.0",
+    scalaVersion := "3.1.0",
     version := "0.2.0-SNAPSHOT",
     organization := "com.codingmaniacs.scala.courses",
     headerLicense := Some(HeaderLicense.Custom("Copyright (c) Geektimus <https://github.com/geektimus>")),
@@ -79,12 +75,4 @@ lazy val commonSettings =
     Test / parallelExecution := false
   )
 
-lazy val gitSettings =
-  Seq(
-    git.useGitDescribe := true
-  )
-
-lazy val scalafmtSettings =
-  Seq(
-    scalafmtOnCompile := true
-  )
+lazy val scalafmtSettings = Seq(scalafmtOnCompile := true)
