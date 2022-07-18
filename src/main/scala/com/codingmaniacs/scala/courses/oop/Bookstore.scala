@@ -8,7 +8,7 @@ object Bookstore {
 
   class Writer(val firstName: String, val surname: String = "", val yearOfBirth: Int = 0) {
 
-    def fullname: Option[String] =
+    def fullName: Option[String] =
       (firstName, surname) match {
         case (f: String, s: String) if !isEmpty(f) && !isEmpty(s) => Some(s"$f $s")
         case (f, _) if !isEmpty(f)                                => Some(f)

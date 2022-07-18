@@ -56,7 +56,7 @@ lazy val settings = commonSettings ++ scalafmtSettings
 
 lazy val commonSettings =
   Seq(
-    scalaVersion := "3.1.0",
+    scalaVersion := "3.1.3",
     version := "0.2.0-SNAPSHOT",
     organization := "com.codingmaniacs.scala.courses",
     headerLicense := Some(HeaderLicense.Custom("Copyright (c) Geektimus <https://github.com/geektimus>")),

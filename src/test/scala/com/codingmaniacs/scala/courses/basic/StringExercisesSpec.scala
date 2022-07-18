@@ -19,7 +19,7 @@ class StringExercisesSpec extends AnyWordSpec with Matchers {
     }
   }
 
-  "The string concatenator" should {
+  "The string repetition" should {
     "return a string repeated n times (4)" in {
       val repeatedStr = StringExercises.repeat("string", 4)
       repeatedStr mustEqual "stringstringstringstring"

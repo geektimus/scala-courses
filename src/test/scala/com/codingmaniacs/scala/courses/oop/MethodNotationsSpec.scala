@@ -39,7 +39,7 @@ class MethodNotationsSpec extends AnyWordSpec with Matchers {
     "allow the user to create a person with an incremented age" in {
       val personWithNickname = +person
       person must not equal personWithNickname
-      personWithNickname.age mustEqual 31
+      personWithNickname.age mustEqual person.age + 1
     }
     "allow the user to check what a person wants to learn" in {
       (person learnsScala) mustEqual "John Doe learns Scala!"

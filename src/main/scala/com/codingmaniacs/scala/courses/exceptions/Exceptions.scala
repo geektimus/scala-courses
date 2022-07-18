@@ -12,44 +12,40 @@ object Exceptions {
 
   object PocketCalculator {
 
-    val add: (Int, Int) => Int = (a: Int, b: Int) => {
-      (a + b) match {
+    val add: (Int, Int) => Int = (a: Int, b: Int) =>
+      a + b match {
         case r if a > 0 && b > 0 && r < 0 =>
-          throw new OverflowException("The result is bigger than Int.MaxValue")
+          throw OverflowException("The result is bigger than Int.MaxValue")
         case r if a < 0 && b < 0 && r > 0 =>
-          throw new UnderflowException("The result is smaller than Int.MinValue")
+          throw UnderflowException("The result is smaller than Int.MinValue")
         case r => r
       }
-    }
 
-    val subtract: (Int, Int) => Int = (a: Int, b: Int) => {
-      (a - b) match {
+    val subtract: (Int, Int) => Int = (a: Int, b: Int) =>
+      a - b match {
         case r if a > 0 && b < 0 && r < 0 =>
-          throw new OverflowException("The result is bigger than Int.MaxValue")
+          throw OverflowException("The result is bigger than Int.MaxValue")
         case r if a < 0 && b > 0 && r > 0 =>
-          throw new UnderflowException("The result could be smaller than Int.MinValue")
+          throw UnderflowException("The result could be smaller than Int.MinValue")
         case r => r
       }
-    }
 
-    val multiply: (Int, Int) => Int = (a: Int, b: Int) => {
-      (a * b) match {
+    val multiply: (Int, Int) => Int = (a: Int, b: Int) =>
+      a * b match {
         case r if a > 0 && b > 0 && r < 0 =>
-          throw new OverflowException("The result is bigger than Int.MaxValue")
+          throw OverflowException("The result is bigger than Int.MaxValue")
         case r if a > 0 && b < 0 && r > 0 =>
-          throw new UnderflowException("The result is smaller than Int.MaxValue")
+          throw UnderflowException("The result is smaller than Int.MaxValue")
         case r if a < 0 && b > 0 && r > 0 =>
-          throw new UnderflowException("The result is smaller than Int.MaxValue")
+          throw UnderflowException("The result is smaller than Int.MaxValue")
         case r => r
       }
-    }
 
-    val divide: (Int, Int) => Int = (a: Int, b: Int) => {
+    val divide: (Int, Int) => Int = (a: Int, b: Int) =>
       (a, b) match {
-        case (_, 0) => throw new MathCalculationException("Division by zero is not allowed")
+        case (_, 0) => throw MathCalculationException("Division by zero is not allowed")
         case (n, m) => n / m
       }
-    }
 
   }
 

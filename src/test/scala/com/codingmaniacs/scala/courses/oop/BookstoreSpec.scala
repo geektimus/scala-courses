@@ -12,15 +12,15 @@ class BookstoreSpec extends AnyWordSpec with Matchers {
   "The bookstore" should {
     "allow the creation of a writer" in {
       val writer = new Writer("Edgar", "Poe", 1809)
-      writer.fullname mustBe Some("Edgar Poe")
+      writer.fullName mustBe Some("Edgar Poe")
     }
     "allow the creation of a writer (with only first name)" in {
       val writer = new Writer("Edgar", yearOfBirth = 1809)
-      writer.fullname mustBe Some("Edgar")
+      writer.fullName mustBe Some("Edgar")
     }
     "avoid the creation of a writer without name" in {
       val writer = new Writer("", yearOfBirth = 1809)
-      writer.fullname mustBe None
+      writer.fullName mustBe None
     }
     "allow the creation of a novel" in {
       val novelName = "The Raven"

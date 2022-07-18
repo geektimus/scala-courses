@@ -15,7 +15,7 @@ object StringExercises {
       case _                                     => None
     }
 
-  def repeat(str: String, i: Int): String = {
+  def repeat: (String, Int) => String = (str: String, i: Int ) => {
 
     @tailrec
     def repeatRec(res: String, input: String, count: Int): String =

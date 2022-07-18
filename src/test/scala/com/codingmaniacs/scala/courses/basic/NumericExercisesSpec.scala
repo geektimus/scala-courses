@@ -31,5 +31,13 @@ class NumericExercisesSpec extends AnyWordSpec with Matchers {
       val fibonacci = NumericExercises.fibonacci(10)
       fibonacci mustEqual 55
     }
+    "return true if a given number is prime (7607)" in {
+      val isPrime = NumericExercises.isPrime(7607)
+      isPrime mustBe true
+    }
+    "return false if a given number is not prime (16)" in {
+      val isPrime = NumericExercises.isPrime(16)
+      isPrime mustBe false
+    }
   }
 }
