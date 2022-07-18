@@ -15,16 +15,17 @@ object StringExercises {
       case _                                     => None
     }
 
-  def repeat: (String, Int) => String = (str: String, i: Int ) => {
+  def repeat: (String, Int) => String =
+    (str: String, i: Int) => {
 
-    @tailrec
-    def repeatRec(res: String, input: String, count: Int): String =
-      count match {
-        case 0           => res
-        case n if n >= 0 => repeatRec(res + input, input, n - 1)
-        case _           => input
-      }
-    repeatRec("", str, i)
-  }
+      @tailrec
+      def repeatRec(res: String, input: String, count: Int): String =
+        count match {
+          case 0           => res
+          case n if n >= 0 => repeatRec(res + input, input, n - 1)
+          case _           => input
+        }
+      repeatRec("", str, i)
+    }
 
 }
