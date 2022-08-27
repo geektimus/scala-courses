@@ -6,16 +6,16 @@ lazy val `scala-courses` =
     .settings(settings)
     .settings(
       libraryDependencies ++= Seq(
-          library.log4j2Api,
-          library.log4j2Core,
-          library.scalaLogging,
-          library.slf4j,
-          library.scalaCheck % Test,
-          library.scalaTest % Test,
-          library.scalatic % Test,
-          library.scalaTestPlusCheck % Test,
-          library.scalaTestPlusMock % Test
-        )
+        library.log4j2Api,
+        library.log4j2Core,
+        library.scalaLogging,
+        library.slf4j,
+        library.scalaCheck % Test,
+        library.scalaTest % Test,
+        library.scalatic % Test,
+        library.scalaTestPlusCheck % Test,
+        library.scalaTestPlusMock % Test
+      )
     )
 
 // *****************************************************************************
@@ -26,13 +26,13 @@ lazy val library =
   new {
 
     object Version {
-      val log4j2       = "2.17.0"
-      val scalaLogging = "3.9.4"
-      val slf4j        = "2.17.0"
-      val scalaCheck   = "1.15.4"
-      val scalaTest    = "3.2.10"
-      val scalatic     = "3.2.10"
-      val scalaTestPlus = "3.2.10.0"
+      val log4j2 = "2.17.2"
+      val scalaLogging = "3.9.5"
+      val slf4j = "2.17.2"
+      val scalaCheck = "1.16.0"
+      val scalaTest = "3.2.12"
+      val scalatic = "3.2.12"
+      val scalaTestPlus = "3.2.12.0"
     }
 
     val log4j2Api    = "org.apache.logging.log4j"   %  "log4j-api"        % Version.log4j2
@@ -43,8 +43,8 @@ lazy val library =
     val scalaTest    = "org.scalatest"              %% "scalatest"        % Version.scalaTest
     val scalatic     = "org.scalactic"              %% "scalactic"        % Version.scalatic
 
-    val scalaTestPlusCheck = "org.scalatestplus" %% "scalacheck-1-15" % Version.scalaTestPlus
-    val scalaTestPlusMock  = "org.scalatestplus" %% "mockito-3-4"     % Version.scalaTestPlus
+    val scalaTestPlusCheck = "org.scalatestplus" %% "scalacheck-1-16" % Version.scalaTestPlus
+    val scalaTestPlusMock = "org.scalatestplus" %% "mockito-4-5" % Version.scalaTestPlus
 
   }
 
@@ -61,17 +61,17 @@ lazy val commonSettings =
     organization := "com.codingmaniacs.scala.courses",
     headerLicense := Some(HeaderLicense.Custom("Copyright (c) Geektimus <https://github.com/geektimus>")),
     scalacOptions ++= Seq(
-        "-deprecation",
-        "-encoding",
-        "UTF-8",
-        "-feature",
-        "-language:existentials",
-        "-language:higherKinds",
-        "-language:implicitConversions",
-        "-language:postfixOps",
-        "-unchecked",
-        "-Xfatal-warnings",
-      ),
+      "-deprecation",
+      "-encoding",
+      "UTF-8",
+      "-feature",
+      "-language:existentials",
+      "-language:higherKinds",
+      "-language:implicitConversions",
+      "-language:postfixOps",
+      "-unchecked",
+      "-Xfatal-warnings"
+    ),
     Test / parallelExecution := false
   )
 
