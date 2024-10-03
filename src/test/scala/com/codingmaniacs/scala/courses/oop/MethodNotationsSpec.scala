@@ -15,7 +15,7 @@ class MethodNotationsSpec extends AnyWordSpec with Matchers {
   "The person class" should {
     "allow the user to check if a given person likes a movie or not" in {
       val otherMovie = "Saw 3D"
-      val isFavoriteMovie = person likes otherMovie
+      val isFavoriteMovie = person.likes(otherMovie)
       isFavoriteMovie mustBe false
     }
     "describe the fact that two persons are hanging out" in {

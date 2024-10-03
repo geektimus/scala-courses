@@ -31,7 +31,7 @@ class FunctionExercisesTest extends AnyFunSuite with ScalaCheckDrivenPropertyChe
       val g = (x: Int) => x / 2
 
       val composed = FunctionExercises.compose(f, g)
-      assert(composed(a) == (f compose g) (a))
+      assert(composed(a) == (f compose g)(a))
     }
   }
 
@@ -41,7 +41,7 @@ class FunctionExercisesTest extends AnyFunSuite with ScalaCheckDrivenPropertyChe
       val g = (x: Int) => x * 3
 
       val andThen = FunctionExercises.andThen(f, g)
-      assert(andThen(a) == (g andThen f) (a))
+      assert(andThen(a) == (g andThen f)(a))
     }
   }
 

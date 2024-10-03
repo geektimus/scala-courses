@@ -15,7 +15,7 @@ object Bookstore {
         case _                                                    => None
       }
 
-    private[this] val isEmpty = (x: String) => Option(x).forall(_.isEmpty)
+    private val isEmpty = (x: String) => Option(x).forall(_.isEmpty)
   }
 
   class Novel(val name: String, val yearOfRelease: Int, val author: Writer) {

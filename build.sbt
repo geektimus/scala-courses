@@ -26,11 +26,11 @@ lazy val library =
   new {
 
     object Version {
-      val log4j2 = "2.19.0"
+      val log4j2 = "2.24.1"
       val scalaLogging = "3.9.5"
-      val scalaCheck = "1.17.0"
-      val scalaTest = "3.2.15"
-      val scalaTestPlus = "3.2.15.0"
+      val scalaCheck = "1.17.1"
+      val scalaTest = "3.2.18"
+      val scalaTestPlus = "3.2.19.0"
     }
 
     val log4j2Api    = "org.apache.logging.log4j"   %  "log4j-api"        % Version.log4j2
@@ -41,8 +41,8 @@ lazy val library =
     val scalaTest    = "org.scalatest"              %% "scalatest"        % Version.scalaTest
     val scalatic     = "org.scalactic"              %% "scalactic"        % Version.scalaTest
 
-    val scalaTestPlusCheck = "org.scalatestplus" %% "scalacheck-1-17" % Version.scalaTestPlus
-    val scalaTestPlusMock = "org.scalatestplus" %% "mockito-4-6" % Version.scalaTestPlus
+    val scalaTestPlusCheck = "org.scalatestplus" %% "scalacheck-1-18" % Version.scalaTestPlus
+    val scalaTestPlusMock = "org.scalatestplus" %% "mockito-5-12" % Version.scalaTestPlus
 
   }
 
@@ -54,7 +54,7 @@ lazy val settings = commonSettings ++ scalafmtSettings
 
 lazy val commonSettings =
   Seq(
-    scalaVersion := "3.2.2",
+    scalaVersion := "3.5.1",
     version := "0.2.0-SNAPSHOT",
     organization := "com.codingmaniacs.scala.courses",
     headerLicense := Some(HeaderLicense.Custom("Copyright (c) Geektimus <https://github.com/geektimus>")),
