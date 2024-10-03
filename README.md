@@ -1,14 +1,13 @@
 # Scala / Functional Programming Courses/ Recap
 
 [![version](https://img.shields.io/badge/version-0.2.0--SNAPSHOT-brightgreen.svg)][semver]
-[![Build Status](https://app.travis-ci.com/geektimus/scala-courses.svg?branch=master)][travis_url]
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/827e74bcacba4742b077d06781620000)](https://www.codacy.com/app/geektimus/scala-courses?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=geektimus/scala-courses&amp;utm_campaign=Badge_Grade)
 
 Small project to recap Scala concepts and practice functional programming  with some libraries
 
 ## Built With
 
-*   [Scala 3.1.0][scala]   - Base language
+*   [Scala 3.5.1][scala]   - Base language
 
 ## Contributing
 
@@ -30,7 +29,6 @@ See also the list of [contributors][project_contributors] who participated in th
 
 This project is licensed under the MIT License - see the [LICENSE.md][license] file for details
 
-[travis_url]: https://app.travis-ci.com/geektimus/scala-courses
 [scala]: https://www.scala-lang.org
 [contributing]: CONTRIBUTING.md
 [semver]: http://semver.org/
