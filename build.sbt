@@ -17,6 +17,26 @@ lazy val `scala-courses` =
         library.scalaTestPlusMock % Test
       )
     )
+  .aggregate(`file-system-exercise`)
+
+lazy val `file-system-exercise` =
+  project
+    .in(file("filesystem"))
+    .enablePlugins(AutomateHeaderPlugin, GitVersioning, JavaAppPackaging, AshScriptPlugin)
+    .settings(name := "Virtual Filesystem (Exercise)")
+    .settings(settings)
+    .settings(
+      libraryDependencies ++= Seq(
+        library.log4j2Api,
+        library.log4j2Core,
+        library.log4j2Scala,
+        library.scalaLogging,
+        library.slf4j,
+        library.scalaCheck % Test,
+        library.specs2 % Test
+      ),
+      Docker / version := "0.1.0-SNAPSHOT"
+    )
 
 // *****************************************************************************
 // Library dependencies
